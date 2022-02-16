@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        background: #001019;
+      }
+
+      #app {
+        width: 600px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <v-chart ref="chart" :autoresize="true" manual-update />
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@vue/composition-api@1.4.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-echarts@6.0.2"></script>
+    <script src="./option-json.js"></script>
+    <script>
+      Vue.component("v-chart", VueECharts);
+
+      new Vue({
+        el: "#app",
+        mounted() {
+          document.title = "Line Static Json Option Test";
+          this.timer = setInterval(this.updateStaticChart, 500);
+        },
+        beforeDestroy() {
+          clearInterval(this.timer);
+        },
+        methods: {
+          updateStaticChart() {
+            this.$refs.chart.setOption(defaultOption, true, false);
+            // lazyUpdate 关掉，因为要关着电脑做性能测试
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
