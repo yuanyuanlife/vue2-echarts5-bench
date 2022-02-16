@@ -48,7 +48,6 @@
         },
         methods: {
           updateRandomOption() {
-            this.$refs.chart.clear();
             this.$refs.chart.setOption(
               this.mapChartHelper.getFullOption(mapMocker(Mock)),
               true,
