@@ -5,7 +5,7 @@
  * 地图的数据等彼此之间有一些关联性，额外处理，使其更逼真
  * */
 
-const shuffle = require("lodash/shuffle");
+const shuffle = _.shuffle;
 const ChineseProvinces = [
   "中国台湾",
   "河北",

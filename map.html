@@ -2,6 +2,7 @@
 <html lang="zh">
   <head>
     <meta charset="utf-8" />
+    <title>Map Static Json Option Test</title>
     <style>
       body {
         background: #001019;
@@ -36,7 +37,6 @@
       new Vue({
         el: "#app",
         mounted() {
-          document.title = "Map Static Json Option Test";
           this.timer = setInterval(this.updateStaticChart, 500);
         },
         beforeDestroy() {

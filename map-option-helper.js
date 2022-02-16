@@ -339,7 +339,7 @@ const getPieces = function ({ property, payload }) {
   if (typeof result === "function") {
     return result(payload);
   }
-  result = _.defaultsDeep({}, result);
+  result = result.slice();
 
   const rangeColors = getColors(colors.controllerOpacity);
   result.forEach((item, index) => {
@@ -1072,7 +1072,7 @@ class MapChartHelper {
   }
 
   getOtherVisualMapOptions(data) {
-    let result = defaultsDeep({}, area.options.piecewise);
+    let result = _.defaultsDeep({}, area.options.piecewise);
     result.pieces = this.getVisualMapPieces({
       property: this.visualMap.property,
       data: data
@@ -1086,7 +1086,7 @@ class MapChartHelper {
       return;
     }
 
-    let result = defaultsDeep({}, area.options.continuous);
+    let result = _.defaultsDeep({}, area.options.continuous);
     result.min = data.extra.min_visit;
     result.max = data.extra.max_visit;
 
@@ -1278,6 +1278,6 @@ class MapChartHelper {
   }
 
   hasVisualMap(data) {
-    return data.map_srcs && !isEmpty(data.map_srcs);
+    return data.map_srcs && !_.isEmpty(data.map_srcs);
   }
 }
