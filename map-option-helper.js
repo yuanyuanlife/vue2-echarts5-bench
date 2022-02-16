@@ -339,7 +339,7 @@ const getPieces = function ({ property, payload }) {
   if (typeof result === "function") {
     return result(payload);
   }
-  result = cloneDeep(result);
+  result = _.defaultsDeep({}, result);
 
   const rangeColors = getColors(colors.controllerOpacity);
   result.forEach((item, index) => {
@@ -779,7 +779,7 @@ const series = {
 };
 
 const getSeries = function () {
-  return cloneDeep(series);
+  return _.defaultsDeep({}, series);
 };
 const dot = {
   getSize: getSize,
@@ -840,7 +840,7 @@ const effectScatter = {
     }
   },
   getSeries(loader) {
-    return cloneDeep(this.series[loader]);
+    return _.defaultsDeep({}, this.series[loader]);
   }
 }; // 地图的发光点
 const colorStops = {
@@ -871,7 +871,7 @@ const getColor = function (type) {
     position.x2 = position.x === 0 ? 1 : 0;
     position.y2 = position.y === 0 ? 1 : 0;
 
-    return defaultsDeep(position, {
+    return _.defaultsDeep(position, {
       // 线性渐变，前四个参数分别是 x0, y0, x2, y2, 范围从 0 - 1，相当于在图形包围盒中的百分比。
       // 如果 globalCoord 为 `true`，则该四个值是绝对的像素位置
       type: "linear",
@@ -942,7 +942,7 @@ const linesSeries = {
 };
 const lines = {
   getSeries(type) {
-    return cloneDeep(linesSeries[type]);
+    return _.defaultsDeep({}, linesSeries[type]);
   }
 }; // 地图的飞线
 
