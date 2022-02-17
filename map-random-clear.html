@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>Map Random Option Test</title>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        background: #001019;
+      }
+
+      #app {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: auto;
+        height: auto;
+        z-index: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map">
+      <v-chart ref="chart" :autoresize="true" manual-update />
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@vue/composition-api@1.4.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-echarts@6.0.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mockjs@1.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15"></script>
+    <script src="./map-option-helper.js"></script>
+    <script src="./merged-world.js"></script>
+    <script src="./mock/map/index.js"></script>
+    <script>
+      echarts.registerMap("world", mergedWorld);
+      Vue.component("v-chart", VueECharts);
+
+      new Vue({
+        el: "#map",
+        mounted() {
+          this.mapChartHelper = new MapChartHelper();
+          this.timer = setInterval(this.updateRandomOption, 500);
+        },
+        beforeDestroy() {
+          clearInterval(this.timer);
+        },
+        methods: {
+          updateRandomOption() {
+            this.$refs.chart.clear();
+            this.$refs.chart.setOption(
+              this.mapChartHelper.getFullOption(mapMocker(Mock)),
+              true,
+              false
+            );
+            // lazyUpdate 关掉，因为要关着电脑做性能测试
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
