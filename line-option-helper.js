@@ -161,6 +161,10 @@ const lineChartConfig = {
 };
 
 class LineChartHelper {
+  constructor() {
+    this.highlightTime = false;
+  }
+
   getFullOption(data) {
     const result = _.defaultsDeep({}, lineChartConfig.lineBaseOption);
     result.series = this.getLineSeriesList(data);
