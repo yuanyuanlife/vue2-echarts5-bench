@@ -975,10 +975,6 @@ class MapChartHelper {
     this.showFlyLines = true;
   }
 
-  destroy() {
-    super.destroy();
-  }
-
   getMapPosition() {
     return {
       left: 0,
