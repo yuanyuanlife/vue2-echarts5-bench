@@ -30,7 +30,5 @@ const lineMocker = function (Mock) {
     ]
   }).data;
 
-  console.log("line mock result", result);
-
   return result;
 };
