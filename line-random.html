@@ -41,7 +41,7 @@
         methods: {
           updateRandomChart() {
             this.$refs.chart.setOption(
-              lineChartHelper.getFullOption(window.lineMocker(Mock)),
+              lineChartHelper.getFullOption(lineMocker(Mock)),
               true,
               false
             );
