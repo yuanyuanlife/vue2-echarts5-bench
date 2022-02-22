@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <title>Line Random Option Test</title>
+    <style>
+      body {
+        background: #001019;
+      }
+
+      #app {
+        width: 600px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <v-chart ref="chart" :autoresize="true" manual-update />
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@vue/composition-api@1.4.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-echarts@6.0.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mockjs@1.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15"></script>
+    <script src="./line-option-helper.js"></script>
+    <script src="./mock/line/index.js"></script>
+    <script>
+      Vue.component("v-chart", VueECharts);
+      const lineChartHelper = new LineChartHelper();
+
+      new Vue({
+        el: "#app",
+        mounted() {
+          this.timer = setInterval(this.updateRandomChart, 2000);
+        },
+        beforeDestroy() {
+          clearInterval(this.timer);
+        },
+        methods: {
+          updateRandomChart() {
+            lineChartHelper.getFullOption(lineMocker(Mock));
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
